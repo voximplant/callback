@@ -47,8 +47,23 @@ function handleCall1Connected(e) {
     // assign event handlers
   	call2.addEventListener(CallEvents.Connected, handleCall2Connected);
   	call2.addEventListener(CallEvents.Failed, function(e2) { 
-      call1.say("Unfortunately, the connection can't be established", Language.US_ENGLISH_FEMALE);
-      call1.addEventListener(CallEvents.PlaybackFinished, function(e3) { VoxEngine.terminate(); });      
+      if (e2.code == 486) {
+        call1.say("Nuber is busy or rejected the call", Language.US_ENGLISH_FEMALE);  
+      } else if (e2.code == 404) {
+        call1.say("Invalid number", Language.US_ENGLISH_FEMALE); 
+      } else if (e2.code == 402) {
+        call1.say("Insufficient funds on your account", Language.US_ENGLISH_FEMALE); 
+      } else if (e2.code == 603) {
+        call1.say("Call was rejected", Language.US_ENGLISH_FEMALE); 
+      } else if (e2.code == 487) {
+        call1.say("Request terminated or phone was not picked up", Language.US_ENGLISH_FEMALE); 
+      } else if (e2.code == 480) {
+        call1.say("Destination number is unavailable", Language.US_ENGLISH_FEMALE); 
+      } else {
+          call1.say(e2.reason, Language.US_ENGLISH_FEMALE);
+          call1.say("Unfortunately, the connection can't be established.", Language.US_ENGLISH_FEMALE);  
+        }
+        call1.addEventListener(CallEvents.PlaybackFinished, function(e3) { VoxEngine.terminate(); });     
     });
   	call2.addEventListener(CallEvents.Disconnected, function(e2) { VoxEngine.terminate(); });
   });
