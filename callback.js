@@ -48,7 +48,7 @@ function handleCall1Connected(e) {
   	call2.addEventListener(CallEvents.Connected, handleCall2Connected);
   	call2.addEventListener(CallEvents.Failed, function(e2) { 
       if (e2.code == 486) {
-        call1.say("Nuber is busy or rejected the call", Language.US_ENGLISH_FEMALE);  
+        call1.say("Number is busy or rejected the call", Language.US_ENGLISH_FEMALE);  
       } else if (e2.code == 404) {
         call1.say("Invalid number", Language.US_ENGLISH_FEMALE); 
       } else if (e2.code == 402) {
