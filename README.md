@@ -16,6 +16,6 @@ Version
 1.0
 
 [VoxImplant]:http://voximplant.com
-[VoxEngine]:http://voximplant.com/help/faq/what-is-voxengine/
+[VoxEngine]:https://voximplant.com/docs/introduction/introduction_to_voximplant/capabilities_and_components/voxengine
 [HTTP API]:http://voximplant.com/docs/references/httpapi/
-[StartScenarios]:http://voximplant.com/docs/references/httpapi/StartScenarios.html
+[StartScenarios]:https://voximplant.com/docs/references/httpapi/scenarios#startscenarios
