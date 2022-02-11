@@ -1,4 +1,5 @@
 var call1, call2, data;
+var callerID = "Please place your caller id here";
 
 VoxEngine.addEventListener(AppEvents.Started, handleScenarioStart);
 VoxEngine.addEventListener(AppEvents.HttpRequest, handleHttpRequest);
@@ -15,7 +16,7 @@ function handleScenarioStart(e) {
   data = VoxEngine.customData();
   data = data.split(":");
   // start scenario - calling number 1
-  call1 = VoxEngine.callPSTN(data[0]);
+  call1 = VoxEngine.callPSTN(data[0], callerID);
   // assign event handlers
   call1.addEventListener(CallEvents.Connected, handleCall1Connected);
   call1.addEventListener(CallEvents.Failed, handleCall1Failed);
@@ -43,7 +44,7 @@ function handleCall1Connected(e) {
   call1.say("Hi, this call is from callback service, please wait", Language.US_ENGLISH_FEMALE);
   call1.addEventListener(CallEvents.PlaybackFinished, function(e1) {
   	// after message played - calling number 2
-    call2 = VoxEngine.callPSTN(data[1]);
+    call2 = VoxEngine.callPSTN(data[1], callerID);
     // assign event handlers
   	call2.addEventListener(CallEvents.Connected, handleCall2Connected);
   	call2.addEventListener(CallEvents.Failed, function(e2) { 
